@@ -31,6 +31,9 @@ public class Accounts {
 		this.balance = balance;
 	}
 	
-	
+	public String toString() {
+		return " You have a balance of: " + balance + " in your account.";
+		
+	}
 
 }
