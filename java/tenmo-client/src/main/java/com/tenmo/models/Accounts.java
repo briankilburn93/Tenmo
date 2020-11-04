@@ -1,7 +1,11 @@
-package com.techelevator.tenmo.accounts.model;
+package com.tenmo.models;
+
+import org.springframework.web.client.RestTemplate;
+
+import com.techelevator.tenmo.models.AuthenticatedUser;
 
 public class Accounts {
-
+	private String API_BASE_URL = "";
 	private int accountId;
 	private int userId;
 	private double balance;
@@ -44,3 +48,4 @@ public class Accounts {
 
 
 }
+

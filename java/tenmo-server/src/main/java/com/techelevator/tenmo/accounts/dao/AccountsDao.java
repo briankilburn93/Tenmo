@@ -4,6 +4,6 @@ import com.techelevator.tenmo.accounts.model.Accounts;
 
 public interface AccountsDao {
 
-	public Accounts getAccountBalance();
+	public void getAccountBalance(int id);
 
 }
