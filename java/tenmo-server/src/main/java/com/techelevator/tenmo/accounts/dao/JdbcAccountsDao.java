@@ -8,6 +8,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import com.techelevator.tenmo.accounts.model.Accounts;
 
 public class JdbcAccountsDao implements AccountsDao {
+	
 	private JdbcTemplate jdbcTemplate;
 	
 	public JdbcAccountsDao(DataSource dataSource) {
@@ -20,13 +21,17 @@ public class JdbcAccountsDao implements AccountsDao {
         account.setBalance(result.getDouble("balance")); //     Copy the data
         return account;   // Return the Java object containing the data from the row
     }
+	
 	@Override
-	public void getAccountBalance(int id) {
-
-	        // Create a Java object
-			String sqlGetBalance = "SELECT balance FROM accounts WHERE account_id=? ";
-	        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetBalance, id);
-	}		
+	public Accounts getAccountBalance(int id) {
+		String sqlGetBalance = "SELECT balance FROM accounts WHERE account_id=? ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetBalance, id);
+		if (results.next()) {
+			return mapRowToAccounts(results);
+		} else {
+			return null;
+		}	
+	}
 }
 	
 
