@@ -105,7 +105,8 @@ private static final String API_BASE_URL = "http://localhost:8080/";
 			System.out.println(account.getUserId());
 		}
 	}
-
+	
+	
 	private void viewTransferHistory() {
 		// TODO Auto-generated method stub
 		
