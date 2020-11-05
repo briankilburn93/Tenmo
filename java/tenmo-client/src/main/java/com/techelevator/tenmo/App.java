@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.techelevator.tenmo.accounts.models.Accounts;
 import com.techelevator.tenmo.models.AuthenticatedUser;
+import com.techelevator.tenmo.models.User;
 import com.techelevator.tenmo.models.UserCredentials;
 import com.techelevator.tenmo.services.AuthenticationService;
 import com.techelevator.tenmo.services.AuthenticationServiceException;
@@ -63,7 +64,7 @@ private static final String API_BASE_URL = "http://localhost:8080/";
 			} else if(MAIN_MENU_OPTION_VIEW_PENDING_REQUESTS.equals(choice)) {
 				viewPendingRequests();
 			} else if(MAIN_MENU_OPTION_SEND_BUCKS.equals(choice)) {
-				getAllAccounts();
+				getAllUsers();
 				sendBucks();
 			} else if(MAIN_MENU_OPTION_REQUEST_BUCKS.equals(choice)) {
 				requestBucks();
@@ -105,7 +106,7 @@ private static final String API_BASE_URL = "http://localhost:8080/";
 		listAccounts(allAccounts);
 	}
 	private void listAccounts(List<Accounts> accounts) {
-		if (accounts.size() > 0){
+		if (accounts.size() > 0){s
         	for(Accounts acc : accounts) {
         		System.out.println(acc.getUserId() + "||");
         	}
@@ -113,15 +114,15 @@ private static final String API_BASE_URL = "http://localhost:8080/";
 	}*/
 	private void getAllUsers() {
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<Accounts[]> responseEntity = restTemplate.getForEntity(API_BASE_URL + "/accounts", Accounts[].class);
-		List<Accounts> allAccounts = Arrays.asList(responseEntity.getBody());
+		ResponseEntity<User[]> responseEntity = restTemplate.getForEntity(API_BASE_URL + "users", User[].class);
+		List<User> allUsers = Arrays.asList(responseEntity.getBody());
 		
-		listAccounts(allAccounts);
+		listUsers(allUsers);
 	}
-	private void listAccounts(List<Accounts> accounts) {
-		if (accounts.size() > 0){
-        	for(Accounts acc : accounts) {
-        		System.out.println(acc.getUserId() + "||");
+	private void listUsers(List<User> users) {
+		if (users.size() > 0){
+        	for(User user : users) {
+        		System.out.println(user.getUsername());
         	}
         }
 	}
