@@ -1,4 +1,4 @@
-package com.tenmo.models;
+package com.techelevator.tenmo.accounts.models;
 
 import org.springframework.web.client.RestTemplate;
 
