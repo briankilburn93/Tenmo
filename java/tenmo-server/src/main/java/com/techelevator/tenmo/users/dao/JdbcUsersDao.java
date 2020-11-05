@@ -13,7 +13,7 @@ import com.techelevator.tenmo.users.model.Users;
 
 
 @Component
-public class JdbcUsersDao implements UsersDao{
+public class JdbcUsersDao implements UsersDao {
 	
 	private JdbcTemplate jdbcTemplate;
 
@@ -22,8 +22,9 @@ public class JdbcUsersDao implements UsersDao{
 	}
 	private Users mapRowToUsers(SqlRowSet result) {  // result has the row to be mapped
         Users user = new Users();                // Create a Java object
+        user.setId(result.getInt("user_id")); 
         user.setUsername(result.getString("username"));
-        user.setUserId(result.getInt("user_id")); 
+        
         return user;   // Return the Java object containing the data from the row
     }
 

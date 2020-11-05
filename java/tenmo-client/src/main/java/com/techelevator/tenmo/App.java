@@ -122,7 +122,7 @@ private static final String API_BASE_URL = "http://localhost:8080/";
 	private void listUsers(List<User> users) {
 		if (users.size() > 0){
         	for(User user : users) {
-        		System.out.println(user.getUsername());
+        		System.out.println("User Id: " + user.getId() + " User: " + user.getUsername());
         	}
         }
 	}

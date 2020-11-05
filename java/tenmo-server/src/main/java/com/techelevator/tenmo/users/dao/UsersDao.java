@@ -6,5 +6,6 @@ import com.techelevator.tenmo.users.model.Users;
 
 
 public interface UsersDao {
+	
 	public List<Users> getAllUsers();
 }

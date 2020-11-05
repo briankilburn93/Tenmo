@@ -18,8 +18,9 @@ public class apiController {
 	private JdbcUsersDao usersDao;
 	
 	// Spring will dependency inject the JdbcAccountsDao into the constructor
-	public apiController(JdbcAccountsDao accDao) {
+	public apiController(JdbcAccountsDao accDao, JdbcUsersDao usersDao) {
 		this.accountsDao = accDao;
+		this.usersDao = usersDao;
 	}
 	
 	@RequestMapping(path = "/accounts/searchUserId", method = RequestMethod.GET)
