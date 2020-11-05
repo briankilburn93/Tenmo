@@ -1,12 +1,18 @@
 package com.techelevator.tenmo.accounts.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.sql.DataSource;
+
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import com.techelevator.tenmo.accounts.model.Accounts;
 
+@Component // This tells Spring to dependency inject where it's needed
 public class JdbcAccountsDao implements AccountsDao {
 	
 	private JdbcTemplate jdbcTemplate;
@@ -23,15 +29,30 @@ public class JdbcAccountsDao implements AccountsDao {
     }
 	
 	@Override
-	public Accounts getAccountBalance(int id) {
-		String sqlGetBalance = "SELECT balance FROM accounts WHERE account_id=? ";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetBalance, id);
+	public List<Accounts> getAllAccounts() {
+		List<Accounts> allAccounts = new ArrayList<>();
+		String sqlGetAllAccounts = "SELECT * FROM accounts";
+
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllAccounts);
+		while (results.next()) {
+			Accounts accountResult = mapRowToAccounts(results);
+			allAccounts.add(accountResult);
+		}
+		return allAccounts;
+	}
+	
+	@Override
+	public Accounts getAccountById(int id) {
+		String sqlGetAccount = "SELECT * FROM accounts WHERE account_id=? ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAccount, id);
 		if (results.next()) {
 			return mapRowToAccounts(results);
 		} else {
 			return null;
 		}	
 	}
+	
+	
 }
 	
 
