@@ -34,6 +34,7 @@ public class JdbcAccountsDao implements AccountsDao {
 		String sqlGetAllAccounts = "SELECT * FROM accounts";
 
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllAccounts);
+		
 		while (results.next()) {
 			Accounts accountResult = mapRowToAccounts(results);
 			allAccounts.add(accountResult);
@@ -51,7 +52,6 @@ public class JdbcAccountsDao implements AccountsDao {
 			return null;
 		}	
 	}
-	
 	
 }
 	

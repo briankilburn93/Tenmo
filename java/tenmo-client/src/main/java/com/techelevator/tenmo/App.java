@@ -1,6 +1,7 @@
 package com.techelevator.tenmo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -84,6 +85,7 @@ private static final String API_BASE_URL = "http://localhost:8080/";
 		System.out.println("Your current account balance is $" + account.getBalance());
 	}
 	
+	
 	/*
 	private Accounts getUserAccount(int currentUserId) {
 		Accounts usersAccount = new Accounts();
@@ -95,15 +97,33 @@ private static final String API_BASE_URL = "http://localhost:8080/";
 	}
 	*/
 	
-	private void getAllAccounts() {
-		List<Accounts> accountList = new ArrayList<>();
+	/*private void getAllAccounts() {
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<Accounts> responseEntity = restTemplate.getForEntity(API_BASE_URL + "/accounts", Accounts.class);
+		ResponseEntity<Accounts[]> responseEntity = restTemplate.getForEntity(API_BASE_URL + "/accounts", Accounts[].class);
+		List<Accounts> allAccounts = Arrays.asList(responseEntity.getBody());
 		
-		for(Accounts account : accountList) {
-			account = responseEntity.getBody();
-			System.out.println(account.getUserId());
-		}
+		listAccounts(allAccounts);
+	}
+	private void listAccounts(List<Accounts> accounts) {
+		if (accounts.size() > 0){
+        	for(Accounts acc : accounts) {
+        		System.out.println(acc.getUserId() + "||");
+        	}
+        }
+	}*/
+	private void getAllUsers() {
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<Accounts[]> responseEntity = restTemplate.getForEntity(API_BASE_URL + "/accounts", Accounts[].class);
+		List<Accounts> allAccounts = Arrays.asList(responseEntity.getBody());
+		
+		listAccounts(allAccounts);
+	}
+	private void listAccounts(List<Accounts> accounts) {
+		if (accounts.size() > 0){
+        	for(Accounts acc : accounts) {
+        		System.out.println(acc.getUserId() + "||");
+        	}
+        }
 	}
 //Writing a note to update this file
 	
