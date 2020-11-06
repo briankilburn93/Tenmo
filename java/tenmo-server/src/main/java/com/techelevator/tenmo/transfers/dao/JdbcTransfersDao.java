@@ -43,8 +43,11 @@ public class JdbcTransfersDao implements TransfersDao {
 		}
 		return allTransfers;
 	}
-	public Transfers addTransfer(Transfers transfer, int accountFrom, int accountTo, double amount) {
-		// TODO Auto-generated method stub
-		return null;
+	public Transfers addTransfer(Transfers transfer, int transfer_type_id, int transfer_status_id, int accountFrom, int accountTo, double amount) {
+		String sqlAddTransfer = "INSERT INTO transfers (transfer_type_id, transfer_status_id, account_from, account_to, amount) VALUES (?,?,?,?,?)";
+		Integer id = jdbcTemplate.queryForObject(sqlAddTransfer, Integer.class, transfer.getTransferTypeId(), transfer.getTransferStatusId(), transfer.getAccountFrom(), transfer.getAccountTo(), transfer.getAmount());
+		
+		return addTransfer(transfer, id, id, id, id, amount);
+		//return null;
 	}
 }
