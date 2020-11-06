@@ -48,6 +48,9 @@ public class apiController {
 	public Transfers addTransfer(@RequestBody Transfers transfers, @RequestParam (value="transfer_type_id") int transfer_type_id, @RequestParam (value="transfer_status_id") int transfer_status_id, @RequestParam (value="account_from") int accountFrom, @RequestParam (value="account_to") int accountTo, @RequestParam (value="amount") double amount) {
 		return transferDao.addTransfer(transfers, transfer_type_id, transfer_status_id, accountFrom, accountTo, amount);
 	}
-	
+	@RequestMapping(path="/accounts", method=RequestMethod.PUT)
+	public Accounts updateAccount(@RequestBody Accounts accounts, @RequestParam (value = "user_Id") int userId, @RequestParam (value = balance) double userBalance ) {
+		return accountsDao
+	}
 	
 }

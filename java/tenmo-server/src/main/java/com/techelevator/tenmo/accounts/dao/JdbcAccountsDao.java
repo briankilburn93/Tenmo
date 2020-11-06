@@ -52,6 +52,12 @@ public class JdbcAccountsDao implements AccountsDao {
 			return null;
 		}	
 	}
+	public Accounts updateBalance(int id) {
+		Accounts account = new Accounts();
+		double balance = account.getBalance();
+		
+		return account;
+	}
 	
 }
 	
