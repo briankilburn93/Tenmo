@@ -54,15 +54,10 @@ public class JdbcAccountsDao implements AccountsDao {
 		}
 	}
 
-	public Accounts updateBalance(int id, double balance) {
+	public void updateBalance(int id, double balance) {
 		String sqlSetAccount = "UPDATE accounts SET balance=? WHERE user_id=?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSetAccount, balance, id);
+		jdbcTemplate.update(sqlSetAccount, balance, id);
 
-		if(results.next()) {
-			return mapRowToAccounts(results);
-		}else{
-			return null;
-		}
 	}
 
 }

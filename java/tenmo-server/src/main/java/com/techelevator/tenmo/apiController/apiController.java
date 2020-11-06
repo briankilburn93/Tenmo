@@ -29,9 +29,10 @@ public class apiController {
 		this.transferDao = transferDao;
 	}
 	@RequestMapping(path="/accounts", method=RequestMethod.PUT)
-	public Accounts updateAccount(@RequestBody Accounts accounts, @RequestParam (value = "user_id") int userId, @RequestParam (value = "balance") double userBalance ) {
-		return accountsDao.updateBalance(userId, userBalance);
+	public void updateAccount(@RequestBody Accounts accounts) {
+		accountsDao.updateBalance(accounts.getUserId(), accounts.getBalance());
 	}
+	
 	@RequestMapping(path="/accounts", method=RequestMethod.GET)
 	public List<Accounts>getAccountList() {
 		return accountsDao.getAllAccounts();
