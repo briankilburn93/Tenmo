@@ -159,11 +159,15 @@ public class App {
 		System.out.println("User From: " + authUser + "\nUser Id selected: " + userIdTransferTo + "\nAmount to transfer: $" + userTransferAmount);
 
 		System.out.println("");
-		Accounts accounts = new Accounts();
-		if (accounts.getBalance() >= Double.parseDouble(userTransferAmount)) {
+		
+		RestTemplate restTemplate = new RestTemplate();
+		Accounts responseEntity = restTemplate.getForEntity(API_BASE_URL + "accounts", Accounts.class).getBody();
+		Accounts accountFrom = responseEntity.getBody();
+		
+		System.out.println(accountFrom.getBalance() + " " + Double.parseDouble(userTransferAmount));
 			
 			
-		}
+		
 		
 		
 		
