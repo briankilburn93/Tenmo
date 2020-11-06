@@ -7,10 +7,10 @@ import java.util.Scanner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import com.techelevator.tenmo.accounts.models.Accounts;
 import com.techelevator.tenmo.models.AuthenticatedUser;
 import com.techelevator.tenmo.models.User;
 import com.techelevator.tenmo.models.UserCredentials;
+import com.techelevator.tenmo.pojosWeCreated.models.Accounts;
 import com.techelevator.tenmo.services.AuthenticationService;
 import com.techelevator.tenmo.services.AuthenticationServiceException;
 import com.techelevator.view.ConsoleService;
@@ -123,8 +123,6 @@ private static final String API_BASE_URL = "http://localhost:8080/";
         System.out.println("----------------------");
         listUsers(allUsers);
         System.out.println("----------------------");
-        System.out.println("Enter ID of user you are sending to (0 to cancel):");
-
 	}
 	private void listUsers(List<User> users) {
 		if (users.size() > 0){
@@ -148,10 +146,22 @@ private static final String API_BASE_URL = "http://localhost:8080/";
 
 	private void sendBucks() {
 		getAllUsers();
-		Scanner keyboard = new Scanner(System.in);
-		String userInput = keyboard.nextLine();
-		RestTemplate restTemplate = new RestTemplate();
 		
+		System.out.println("Enter ID of user you are sending to (0 to cancel):");
+		
+		Scanner keyboard = new Scanner(System.in);
+		
+		String userIdTransferTo = keyboard.nextLine();
+		
+		System.out.println("Enter the amount you would like to transfer: $");
+		
+		String userTransferAmount = keyboard.nextLine();
+
+		//RestTemplate restTemplate = new RestTemplate();
+		
+		System.out.println("User Id selected: " + userIdTransferTo + "\nAmount to transfer: $" + userTransferAmount);
+		
+		System.out.println("");
 		
 	}
 

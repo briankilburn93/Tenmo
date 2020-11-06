@@ -6,9 +6,6 @@ import com.techelevator.tenmo.transfers.model.Transfers;
 
 public interface TransfersDao {
 
-	
-	
 	public List<Transfers> getAllTransfers();
-	
 	
 }

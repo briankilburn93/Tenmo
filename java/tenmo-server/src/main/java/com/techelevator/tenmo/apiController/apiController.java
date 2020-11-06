@@ -2,10 +2,12 @@ package com.techelevator.tenmo.apiController;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.techelevator.tenmo.accounts.dao.JdbcAccountsDao;
 import com.techelevator.tenmo.accounts.model.Accounts;
 import com.techelevator.tenmo.transfers.dao.JdbcTransfersDao;
@@ -36,9 +38,15 @@ public class apiController {
 	public List<Users> getAllUsers() {
 		return usersDao.getAllUsers();
 	}
+	
 	@RequestMapping(path="/transfers", method = RequestMethod.GET)
 	public List<Transfers> getAllTransfers(){
 		return transferDao.getAllTransfers();
+	}
+	
+	@RequestMapping(path="/transfers", method=RequestMethod.POST)
+	public Transfers addTransfer(@RequestBody Transfers transfers, @RequestParam (value="account_from") int accountFrom, @RequestParam (value="account_to") int accountTo, @RequestParam (value="amount") double amount) {
+		return transferDao.addTransfer(transfers, accountFrom, accountTo, amount);
 	}
 	
 	

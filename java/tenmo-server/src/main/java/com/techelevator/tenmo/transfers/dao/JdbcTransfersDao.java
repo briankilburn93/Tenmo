@@ -43,4 +43,8 @@ public class JdbcTransfersDao implements TransfersDao {
 		}
 		return allTransfers;
 	}
+	public Transfers addTransfer(Transfers transfer, int accountFrom, int accountTo, double amount) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
