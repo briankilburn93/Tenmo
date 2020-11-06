@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.techelevator.tenmo.accounts.dao.JdbcAccountsDao;
 import com.techelevator.tenmo.accounts.model.Accounts;
 import com.techelevator.tenmo.transfers.dao.JdbcTransfersDao;
+import com.techelevator.tenmo.transfers.model.Transfers;
 import com.techelevator.tenmo.users.dao.JdbcUsersDao;
 import com.techelevator.tenmo.users.model.Users;
 
@@ -35,5 +36,10 @@ public class apiController {
 	public List<Users> getAllUsers() {
 		return usersDao.getAllUsers();
 	}
-
+	@RequestMapping(path="/transfers", method = RequestMethod.GET)
+	public List<Transfers> getAllTransfers(){
+		return transferDao.getAllTransfers();
+	}
+	
+	
 }
