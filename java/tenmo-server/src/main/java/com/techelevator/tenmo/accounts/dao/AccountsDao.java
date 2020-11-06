@@ -10,4 +10,5 @@ public interface AccountsDao {
 
 	public List<Accounts> getAllAccounts();
 
+	public Accounts updateBalance(int id, double balance);
 }
