@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.techelevator.tenmo.accounts.dao.JdbcAccountsDao;
 import com.techelevator.tenmo.accounts.model.Accounts;
+import com.techelevator.tenmo.transfers.dao.JdbcTransfersDao;
 import com.techelevator.tenmo.users.dao.JdbcUsersDao;
 import com.techelevator.tenmo.users.model.Users;
 
@@ -16,11 +17,13 @@ public class apiController {
 	
 	private JdbcAccountsDao accountsDao;
 	private JdbcUsersDao usersDao;
+	private JdbcTransfersDao transferDao;
 	
 	// Spring will dependency inject the JdbcAccountsDao into the constructor
-	public apiController(JdbcAccountsDao accDao, JdbcUsersDao usersDao) {
+	public apiController(JdbcAccountsDao accDao, JdbcUsersDao usersDao, JdbcTransfersDao transferDao) {
 		this.accountsDao = accDao;
 		this.usersDao = usersDao;
+		this.transferDao = transferDao;
 	}
 	
 	@RequestMapping(path = "/accounts/searchUserId", method = RequestMethod.GET)

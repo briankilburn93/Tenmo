@@ -1,8 +1,8 @@
 package com.techelevator.tenmo;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -64,7 +64,7 @@ private static final String API_BASE_URL = "http://localhost:8080/";
 			} else if(MAIN_MENU_OPTION_VIEW_PENDING_REQUESTS.equals(choice)) {
 				viewPendingRequests();
 			} else if(MAIN_MENU_OPTION_SEND_BUCKS.equals(choice)) {
-				getAllUsers();
+				
 				sendBucks();
 			} else if(MAIN_MENU_OPTION_REQUEST_BUCKS.equals(choice)) {
 				requestBucks();
@@ -117,12 +117,19 @@ private static final String API_BASE_URL = "http://localhost:8080/";
 		ResponseEntity<User[]> responseEntity = restTemplate.getForEntity(API_BASE_URL + "users", User[].class);
 		List<User> allUsers = Arrays.asList(responseEntity.getBody());
 		
-		listUsers(allUsers);
+		System.out.println("----------------------");
+        System.out.println("Users");
+        System.out.println("ID           Name");
+        System.out.println("----------------------");
+        listUsers(allUsers);
+        System.out.println("----------------------");
+        System.out.println("Enter ID of user you are sending to (0 to cancel):");
+
 	}
 	private void listUsers(List<User> users) {
 		if (users.size() > 0){
         	for(User user : users) {
-        		System.out.println("User Id: " + user.getId() + " User: " + user.getUsername());
+        		System.out.println(user.getId() + "           " + user.getUsername());
         	}
         }
 	}
@@ -140,6 +147,10 @@ private static final String API_BASE_URL = "http://localhost:8080/";
 	}
 
 	private void sendBucks() {
+		getAllUsers();
+		Scanner keyboard = new Scanner(System.in);
+		String userInput = keyboard.nextLine();
+		RestTemplate restTemplate = new RestTemplate();
 		
 		
 	}
@@ -208,4 +219,7 @@ private static final String API_BASE_URL = "http://localhost:8080/";
 		String password = console.getUserInput("Password");
 		return new UserCredentials(username, password);
 	}
+	
+	
+	
 }
