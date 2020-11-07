@@ -166,6 +166,8 @@ public class App {
 		if(accountFrom >= Double.parseDouble(userTransferAmount)) {
 			accountFrom = accountFrom - Double.parseDouble(userTransferAmount);
 			accountTo = accountTo + Double.parseDouble(userTransferAmount);
+			restTemplate.put(API_BASE_URL + "accounts", accountTo);
+			restTemplate.put(API_BASE_URL + "accounts", accountFrom);
 		}
 		System.out.println(accountFrom + " " + accountTo );
 			
