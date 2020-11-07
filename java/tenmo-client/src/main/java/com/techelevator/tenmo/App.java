@@ -161,11 +161,11 @@ public class App {
 		System.out.println("");
 		
 		RestTemplate restTemplate = new RestTemplate();
-		double accountTo = restTemplate.getForObject(API_BASE_URL + "accounts/searchUserId?userId=" +userIdTransferTo , Accounts.class).getBalance();
-		 double accountFrom = restTemplate.getForObject(API_BASE_URL + "accounts/searchUserId?userId=" + authUser, Accounts.class).getBalance();
-		if(accountFrom >= Double.parseDouble(userTransferAmount)) {
-			accountFrom = accountFrom - Double.parseDouble(userTransferAmount);
-			accountTo = accountTo + Double.parseDouble(userTransferAmount);
+		Accounts accountTo = restTemplate.getForObject(API_BASE_URL + "accounts/searchUserId?userId=" +userIdTransferTo , Accounts.class);
+		 Accounts accountFrom = restTemplate.getForObject(API_BASE_URL + "accounts/searchUserId?userId=" + authUser, Accounts.class);
+		if(accountFrom.getBalance() >= Double.parseDouble(userTransferAmount)) {
+			accountFrom.setBalance(accountFrom.getBalance() - Double.parseDouble(userTransferAmount));
+			accountTo.setBalance(accountTo.getBalance() + Double.parseDouble(userTransferAmount));
 			restTemplate.put(API_BASE_URL + "accounts", accountTo);
 			restTemplate.put(API_BASE_URL + "accounts", accountFrom);
 		}
