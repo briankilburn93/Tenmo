@@ -168,10 +168,10 @@ public class App {
 			accountTo.setBalance(accountTo.getBalance() + Double.parseDouble(userTransferAmount));
 			restTemplate.put(API_BASE_URL + "accounts", accountTo);
 			restTemplate.put(API_BASE_URL + "accounts", accountFrom);
-		}
+		}else {
 		System.out.println(accountFrom + " " + accountTo );
 			
-			
+		}
 		
 		
 		
